@@ -9,10 +9,10 @@ a ~800 g, ~25 cm tall bipedal robot — built on
 Policies are trained here at 50 Hz, exported to ONNX, and deployed on the real
 robot by the runtime in [pollen-robotics/microduck](https://github.com/pollen-robotics/microduck).
 
-<!-- HERO VIDEO — real robot montage: walking, standup, roulade, roller skating.
-     Keep it short (~30 s) and real-robot-first: this is the "why should I care" shot. -->
+<!-- HERO VIDEO — Microduck driven with an Xbox controller on Windows
+     (policy trained locally; see the windows-local branch / windows/WINDOWS_PORT.md). -->
 
-https://github.com/user-attachments/assets/50c3d537-8db2-4005-9d9c-3472faeec4d0
+<video src="https://raw.githubusercontent.com/tianxie1989/microduck_rl/develop/assets/microduck_xbox_windows.mp4" controls width="100%"></video>
 
 The repo encodes the full sim2real recipe: [BAM](https://github.com/Rhoban/bam)
 actuator physics, domain randomization, backlash simulation, and the
