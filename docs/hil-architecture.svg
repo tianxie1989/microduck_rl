@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" width="1200" height="840" font-family="'Microsoft YaHei','PingFang SC','Segoe UI',sans-serif">
+  <defs>
+    <marker id="arrCmd" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#b45309"/>
+    </marker>
+    <marker id="arrSen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#2f7d5d"/>
+    </marker>
+    <marker id="arrGray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="600" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#1f2937">microduck HIL 硬件在环控制架构</text>
+  <text x="600" y="66" text-anchor="middle" font-size="14" fill="#6b7280">树莓派 5(真实控制栈 · 策略推理)← TCP 7801 → PC(MuJoCo 仿真身体)</text>
+
+  <!-- ============ 左侧:树莓派 ============ -->
+  <rect x="30" y="90" width="400" height="640" rx="16" fill="#f3f7fb" stroke="#2c5f8a" stroke-width="2"/>
+  <rect x="30" y="90" width="400" height="52" rx="16" fill="#2c5f8a"/>
+  <rect x="30" y="112" width="400" height="30" fill="#2c5f8a"/>
+  <text x="230" y="124" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">树莓派 5 · 真实控制栈(192.168.31.156)</text>
+
+  <!-- Xbox 手柄 -->
+  <rect x="95" y="165" width="180" height="76" rx="30" fill="#ffffff" stroke="#c0562f" stroke-width="2"/>
+  <rect x="126" y="183" width="8" height="24" rx="2" fill="#c0562f"/>
+  <rect x="118" y="191" width="24" height="8" rx="2" fill="#c0562f"/>
+  <circle cx="165" cy="203" r="14" fill="#ffffff" stroke="#c0562f" stroke-width="2"/>
+  <circle cx="165" cy="203" r="6" fill="#c0562f"/>
+  <circle cx="215" cy="203" r="14" fill="#ffffff" stroke="#c0562f" stroke-width="2"/>
+  <circle cx="215" cy="203" r="6" fill="#c0562f"/>
+  <circle cx="245" cy="198" r="7" fill="#16a34a"/>
+  <circle cx="228" cy="214" r="7" fill="#dc2626"/>
+  <text x="185" y="260" text-anchor="middle" font-size="13" font-weight="bold" fill="#c0562f">Xbox 手柄 · USB 直连</text>
+
+  <!-- USB 线 -->
+  <line x1="185" y1="241" x2="185" y2="296" stroke="#6b7280" stroke-width="1.8" marker-end="url(#arrGray)"/>
+  <text x="200" y="274" font-size="11" fill="#6b7280">USB</text>
+
+  <!-- padd -->
+  <rect x="60" y="300" width="340" height="62" rx="10" fill="#e0ecff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="230" y="324" text-anchor="middle" font-size="15" font-weight="bold" fill="#1d4ed8">padd — 手柄守护进程</text>
+  <text x="230" y="346" text-anchor="middle" font-size="12" fill="#374151">gilrs · evdev 直读 /dev/input · 50 Hz 上报意图</text>
+
+  <!-- padd → robotd -->
+  <line x1="230" y1="362" x2="230" y2="392" stroke="#6b7280" stroke-width="1.8" marker-end="url(#arrGray)"/>
+  <text x="244" y="382" font-size="11" fill="#6b7280">intents</text>
+
+  <!-- robotd -->
+  <rect x="60" y="396" width="340" height="128" rx="10" fill="#fff7e6" stroke="#b45309" stroke-width="2"/>
+  <text x="230" y="420" text-anchor="middle" font-size="16" font-weight="bold" fill="#9a3412">robotd 0.17.8 · --sim 模式</text>
+  <text x="80" y="442" font-size="12.5" fill="#374151">• 50 Hz 控制环 + velstand.onnx 策略推理</text>
+  <text x="80" y="462" font-size="12.5" fill="#374151">• 安全门 / 摔倒检测 / 里程计 / IPC</text>
+  <text x="80" y="482" font-size="12.5" fill="#374151">• ONNX Runtime 1.28.0(dlopen 加载)</text>
+  <text x="80" y="502" font-size="12.5" fill="#374151">• 补丁:总线读超时 30→100 ms(Wi-Fi 抖动)</text>
+
+  <!-- netpadd -->
+  <rect x="60" y="536" width="340" height="50" rx="10" fill="#eef2f7" stroke="#64748b" stroke-width="1.5"/>
+  <text x="230" y="566" text-anchor="middle" font-size="13" fill="#1f2937">netpadd — 局域网手柄(UDP 4210 · PC 手柄备选)</text>
+
+  <!-- robotctl -->
+  <rect x="60" y="598" width="340" height="50" rx="10" fill="#eef2f7" stroke="#64748b" stroke-width="1.5"/>
+  <text x="230" y="628" text-anchor="middle" font-size="13" fill="#1f2937">robotctl CLI — init / enable / relax / do &#60;skill&#62;</text>
+
+  <!-- 策略库 -->
+  <rect x="60" y="660" width="340" height="56" rx="10" fill="#eef2f7" stroke="#64748b" stroke-width="1.5"/>
+  <text x="230" y="683" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2937">策略库 /opt/robot/policies/current</text>
+  <text x="230" y="702" text-anchor="middle" font-size="11.5" fill="#6b7280">官方 v8:velstand · roulade · kicks · sitstand …</text>
+
+  <!-- ============ 右侧:PC ============ -->
+  <rect x="770" y="90" width="400" height="640" rx="16" fill="#f2f9f5" stroke="#2f7d5d" stroke-width="2"/>
+  <rect x="770" y="90" width="400" height="52" rx="16" fill="#2f7d5d"/>
+  <rect x="770" y="112" width="400" height="30" fill="#2f7d5d"/>
+  <text x="970" y="124" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#ffffff">PC 训练机 · 仿真身体(Windows · 192.168.31.188)</text>
+
+  <!-- body_server -->
+  <rect x="800" y="160" width="340" height="150" rx="10" fill="#dcf2e8" stroke="#2f7d5d" stroke-width="1.5"/>
+  <text x="970" y="184" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#14532d">body_server.py — MuJoCo 身体孪生</text>
+  <text x="820" y="207" font-size="12.5" fill="#374151">• BAM 执行器拟合(真实 XL330 参数)</text>
+  <text x="820" y="227" font-size="12.5" fill="#374151">• 接触/碰撞 · IMU · ToF 仿真</text>
+  <text x="820" y="247" font-size="12.5" fill="#374151">• 出生点 SIT +“断电”,等待 daemon 上电</text>
+  <text x="820" y="267" font-size="12.5" fill="#374151">• 每只鸭一个 TCP 端口(7801 起)</text>
+
+  <!-- viewer -->
+  <rect x="800" y="326" width="340" height="58" rx="10" fill="#dcf2e8" stroke="#2f7d5d" stroke-width="1.5"/>
+  <text x="970" y="352" text-anchor="middle" font-size="14" font-weight="bold" fill="#14532d">MuJoCo 3D 查看器 — 观察 / 推搡交互</text>
+  <text x="970" y="371" text-anchor="middle" font-size="11.5" fill="#6b7280">鼠标拖拽可推倒鸭子,看它自己爬起来</text>
+
+  <!-- launcher -->
+  <rect x="800" y="400" width="340" height="50" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="970" y="430" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#991b1b">启动器:duck-body.bat ⚠ 只能开一个实例</text>
+
+  <!-- firewall -->
+  <rect x="800" y="466" width="340" height="66" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="970" y="492" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#991b1b">防火墙:入站 TCP 7801–7910</text>
+  <text x="970" y="512" text-anchor="middle" font-size="11.5" fill="#6b7280">必须 -Profile Any(家庭 Wi-Fi 是“公用网络”)</text>
+
+  <!-- ============ 中间:协议与数据流 ============ -->
+  <rect x="450" y="318" width="300" height="84" rx="10" fill="#ffffff" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="600" y="342" text-anchor="middle" font-size="14" font-weight="bold" fill="#111827">TCP 7801 · NDJSON 协议 v1</text>
+  <text x="600" y="363" text-anchor="middle" font-size="11.5" fill="#4b5563">hello / read / write / gain / torque / slow / tof</text>
+  <text x="600" y="382" text-anchor="middle" font-size="11.5" fill="#4b5563">50 Hz 逐 tick 请求-响应</text>
+
+  <!-- 命令流 Pi → PC -->
+  <line x1="430" y1="300" x2="770" y2="300" stroke="#b45309" stroke-width="2.5" marker-end="url(#arrCmd)"/>
+  <text x="600" y="290" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b45309">命令:write 关节目标 · gain · torque 上电 →</text>
+
+  <!-- 传感器流 PC → Pi -->
+  <line x1="770" y1="560" x2="430" y2="560" stroke="#2f7d5d" stroke-width="2.5" marker-end="url(#arrSen)"/>
+  <text x="600" y="582" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2f7d5d">← 传感器:read 位置·IMU·trunk_z · slow 电压/温度 · tof 深度</text>
+
+  <!-- ============ 底部:闭环说明 ============ -->
+  <rect x="30" y="756" width="1140" height="62" rx="12" fill="#1f2937"/>
+  <text x="600" y="780" text-anchor="middle" font-size="14" fill="#f9fafb">数据闭环(50 Hz):手柄 → padd → robotd 策略推理 → TCP → MuJoCo 物理仿真 → 传感器读数 → 回到 robotd</text>
+  <text x="600" y="800" text-anchor="middle" font-size="12" fill="#9ca3af">真机部署:去掉 --sim,仿真身体换成真实舵机总线(XL330 × 14)——机器人上跑的代码一行不改</text>
+</svg>
