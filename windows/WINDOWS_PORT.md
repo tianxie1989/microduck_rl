@@ -122,6 +122,7 @@ wandb API 不可用时,把**官方发布的 ONNX 反解回 rsl_rl 教师检查�
 | `fix-bluetooth.ps1` | Xbox 手柄蓝牙修复(管理员;重启 bthserv、清幽灵 HID、禁用故障 CSR 蓝牙棒) |
 | `models/ours-5598.onnx` | 自训走路策略(velocity 2048env×5300it) |
 | `models/ours-velstand.onnx` | 自训 velstand 策略(1024env×10000it,官方同款配方) |
+| `models/ours-velstand-v2.onnx` | 精调版(续训至 14500it):直行摆动 ±0.08-0.16 rad/s、推搡摔倒率 40%、恢复 1.8s |
 
 ---
 
@@ -150,12 +151,12 @@ $env:PATH            = ".venv\Scripts;<uv 目录>;" + $env:PATH
 
 同条件对比(0.3 m/s 命令、无推搡、同一场景):
 
-| 指标 | ours-velstand | 官方 velstand v8 |
-|---|---|---|
-| 实际前进速度 | **0.12 m/s** | 0.085 m/s |
-| 直行偏航摆动 | ±0.2~0.4 rad/s | **±0.15 rad/s** |
-| 1.0 m/s 推搡摔倒率 | 48% | **16%** |
-| 摔倒后恢复率 | 100%(2.2s) | 100%(2.3s) |
+| 指标 | ours-velstand v1(10000it) | ours-velstand v2(14500it 精调) | 官方 velstand v8 |
+|---|---|---|---|
+| 实际前进速度 | **0.12 m/s** | **0.12 m/s** | 0.085 m/s |
+| 直行偏航摆动 | ±0.2~0.4 rad/s | **±0.08~0.16 rad/s** | ±0.15 rad/s |
+| 1.0 m/s 推搡摔倒率 | 48% | 40% | **16%** |
+| 摔倒后恢复率 | 100%(2.2s) | 90%(1.8s) | 100%(2.3s) |
 
 ## 7. 常见问题 FAQ
 

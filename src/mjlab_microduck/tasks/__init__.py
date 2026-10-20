@@ -75,6 +75,9 @@ from .microduck_roulade_env_cfg import (
     make_microduck_roulade_env_cfg,
     MicroduckRouladeRlCfg,
 )
+# NOTE: WALL-E tasks (walle_drive_env_cfg / walle_balance_env_cfg) were
+# unregistered 2026-10-20 (user stopped the project). Module files are kept on
+# disk; re-add the imports + register_mjlab_task blocks to resume.
 from .backlash import make_backlash_variant
 
 # Standard velocity task

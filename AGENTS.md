@@ -309,6 +309,17 @@ persistent skill `microduck-rl-local` (`~/.dsh/skills/microduck-rl-local/SKILL.m
 ## Ops notes
 
 - velstand at 2048 envs OOMs on 8 GB (668 MB short) → use 1024.
+- GPU memory: shared GPU memory (WDDM spill pool) cannot be manually assigned
+  and CUDA graph capture cannot use it; 1536+ envs fail at graph instantiation
+  even with VRAM free → 1024 stays the reliable ceiling. Disabling warp
+  mempool (`scripts/train_nograph.py`) fits more envs but drops throughput
+  ~10x (598 vs 6200 steps/s) — not worth it. Free VRAM before training by
+  closing playback/browser windows.
+- GitHub pushes: remote = `tianxie1989/microduck_rl`, branch `windows-local`
+  (commit 224d187d16); homepage-video commit `c4c351a` on `develop`.
+  Credentials: classic PAT stored in Windows Credential Manager (GCM);
+  token value recorded ONLY in `C:\ZS\MicroDuck-RL\AGENTS.md` (NOT in any
+  git-tracked file — never copy it here).
 - Keyboard control: click the MuJoCo 3D window and type (viewer keys are
   routed via key_callback); Xbox controller auto-detected (left stick drive,
   A push / B sit / X roll / Y stop). Launchers: `C:\ZS\MicroDuck-RL\play-duck.bat`
